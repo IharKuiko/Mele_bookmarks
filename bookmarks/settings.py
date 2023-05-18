@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-15ugdhcw1pb%*o#m=@whe6z55)1z^!$=wn&jh-pprc3((g3*9-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['mysite.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "social_django",
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -129,3 +131,14 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 LOGIN_REDIRECT_URL = 'dashboard'
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
+
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'account.authentication.EmailAuthBackend',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.google.GoogleOAuth2',
+]
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '1051075404461-pt29qph0qn8dsv00m6he17k13rgkmgog.apps.googleusercontent.com' # ИД клиента Google
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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' # Секрет клиента Google
